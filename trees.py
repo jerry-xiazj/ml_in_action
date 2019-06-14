@@ -6,6 +6,7 @@ Created on Wed Jun 12 00:41:46 2019
 """
 
 import operator
+import pickle
 from math import log
 
 
@@ -67,8 +68,9 @@ def majorityCnt(classList):
         if vote not in classCount.keys():
             classCount[vote] = 0
         classCount[vote] += 1
-    sortedClassCount = sorted(classCount.items(), \
-                              key=operator.itemgetter(1), reverse=True)
+    sortedClassCount = sorted(classCount.items(),
+                              key=operator.itemgetter(1),
+                              reverse=True)
     return sortedClassCount[0][0]
 
 
@@ -86,9 +88,21 @@ def createTree(dataSet, labels):
     uniqueVals = set(featValues)
     for value in uniqueVals:
         subLables = labels[:]
-        myTree[bestFeatLabel][value] = createTree(splitDataSet\
-        (dataSet, bestFeat, value), subLables)
+        myTree[bestFeatLabel][value] = createTree(
+            splitDataSet(dataSet, bestFeat, value), subLables)
     return myTree
+
+
+def storeTree(inputTree, filename):
+    with open(filename, 'w') as f:
+        pickle.dump(inputTree, f)
+
+
+def grabTree(filename):
+    with open(filename, 'r') as f:
+        tree = pickle.load(f)
+    return tree
+
 
 def main():
     import trees
