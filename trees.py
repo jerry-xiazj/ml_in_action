@@ -94,12 +94,12 @@ def createTree(dataSet, labels):
 
 
 def storeTree(inputTree, filename):
-    with open(filename, 'w') as f:
+    with open(filename, 'wb') as f:
         pickle.dump(inputTree, f)
 
 
 def grabTree(filename):
-    with open(filename, 'r') as f:
+    with open(filename, 'rb') as f:
         tree = pickle.load(f)
     return tree
 
