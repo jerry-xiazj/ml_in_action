@@ -17,7 +17,7 @@ def plotNode(nodeTxt, centerPt, parentPt, nodeType):
                             arrowprops=arrow_args)
 
 
-def createPlot(inTree):
+def createPlot(inTree, filename):
     fig = plt.figure(1, facecolor='white')
     fig.clf()
     axprops = dict(xticks=[], yticks=[])
@@ -27,7 +27,7 @@ def createPlot(inTree):
     plotTree.xOff = -0.5 / plotTree.totalW
     plotTree.yOff = 1.0
     plotTree(inTree, (0.5, 1.0), '')
-    plt.savefig('/home/jerry/ml_in_action/test.png', format='png')
+    plt.savefig('/home/jerry/ml_in_action/ID3/' + filename, format='png')
 
 
 def getNumLeafs(myTree):
@@ -127,7 +127,7 @@ def main():
     myDat, labels = trees.createDataSet()
     myTree = trees.createTree(myDat, labels)
     # myTree = treePlotter.retrieveTree(1)
-    treePlotter.createPlot(myTree)
+    treePlotter.createPlot(myTree, 'test.png')
     trees.storeTree(myTree, 'classifierStorage')
     myTree = trees.grabTree('classifierStorage')
     print(myTree)

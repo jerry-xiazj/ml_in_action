@@ -7,6 +7,7 @@ Created on Wed Jun 12 00:41:46 2019
 
 import operator
 import pickle
+# import json
 from math import log
 
 
@@ -96,11 +97,13 @@ def createTree(dataSet, labels):
 def storeTree(inputTree, filename):
     with open(filename, 'wb') as f:
         pickle.dump(inputTree, f)
+        # json.dump(inputTree, f)
 
 
 def grabTree(filename):
     with open(filename, 'rb') as f:
         tree = pickle.load(f)
+        # tree = json.load(f)
     return tree
 
 
